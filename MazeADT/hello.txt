@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-.This is new, hi
+.This is new, hi blah blah blah.
 =======
 This is new, hi
 Dinosaurs are cool
