@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 .This is new, hi
 =======
-This is new, hi
+This is new, hi halb halb halb
 Dinosaurs are cool
 >>>>>>> a88048f81816f0730d60e48638cf28d64cb97850
