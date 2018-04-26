@@ -23,7 +23,14 @@ struct _node {
   node * west;  node * south;
   node * parent;
 };
-  
+
+/* Works as the linked list for the tree search.
+ * Doesn't have a head since it works as a LIFO.
+ */
+struct _tree {
+  node * tail;
+}
+
 // same functions from matrix getE and setE
 int getE(maze const * mz, int row, int col) {
   return mz->data[(col-1) * mz->rows + row - 1];

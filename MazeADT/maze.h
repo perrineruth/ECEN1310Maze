@@ -3,6 +3,7 @@
 
 typedef struct _maze maze;
 typedef struct _node node;
+typedef struct _tree tree;
 
 maze * newMaze(FILE * mz);
 /* creates a maze from a text file.
