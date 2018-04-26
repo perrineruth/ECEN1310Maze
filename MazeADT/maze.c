@@ -257,22 +257,50 @@ int freeTree(tree * tr){
   free(tr);
   return 1;
 }
-
-int stepPath(tree * tr,maze * mz, ){
+/*
+ * Return Value Legend:
+ *  0 = Next Step Taken
+ * -1 = No Solution
+ *  1 = Solution Found!
+ */
+int stepPath(tree * tr,maze * mz){
   node * n;
   n=tr->tail;
-  setE(mz,n->row,n->col,-2);
-  bool opath;
-  if (!getE(mz,n->row,n->col+1)){ //Right
+   int N,E,W,S;
+  //Obtain Maze values for each direction
+  E=getE(mz,n->row,n->col+1);
+  S=getE(mz,n->row+1,n->col);
+  W=getE(mz,n->row,n->col-1);
+  N=getE(mz,n->row-1,n->col);
+
+  //Check for Solution Value
+  if(N==3 || E==3 || W==3 || S==3)
+    return 1;
+
+  //Check for Open Paths and Follow
+  if (!E){ //East
+    newNode(n->row,n->col+1,tr,mz);
+    return 0;
+  }
+  if(!S){//South
+    newNode(n->row+1,n->col,tr,mz);
+    return 0;
+  }
+  if(!W){//West
+    newNode(n->row,n->col-1,tr,mz);
+    return 0;
+  }
+  if(!N){//North
+    newNode(n->row-1,n->col,tr,mz);
+    return 0;
+  }
+  
+  //If no open paths found
+  if(!n->parent) //No parent nodes found. Returned to Start.
+    return -1;
+  deleteNode(tr,mz);
+  return 0;
+}
     
-  }
-  else if(!getE(mz,n->row+1,n->col)){//Down
-
-  }
-  else if(!getE(mz,n->row,n->col-1)){//Left
-
-  }
-  else if(!getE(mz,n->-1,n->col)){//Up
-
-  }
-  if(!opath) //backtrack if no open paths found
+    
+    
