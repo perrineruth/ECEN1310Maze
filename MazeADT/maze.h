@@ -1,6 +1,7 @@
 #ifndef MAZE_H_
 #define MAZE_H_
 
+// file types for maze.c
 typedef struct _maze maze;
 typedef struct _node node;
 typedef struct _tree tree;

@@ -181,42 +181,77 @@ int printMaze(maze const * mz) {
 
 // tree functions
 
-node * initNode(maze * mz){
+tree * newTree(maze * mz){
+  // check for null pointers and allocate data.
   if(!mz) return NULL;
+  tree * tr;
+  // allocate a tree.
+  tr = malloc(sizeof(tree));
+  if(!tr) return NULL;
+  // allocate a node to be the current tail.
   node * n;
   n = malloc(sizeof(node));
+  if(!n) return NULL;
+  // set it to be at the start of the maze.
   n->row = mz->start[0];
   n->col = mz->start[1];
   n->parent = 0;
-  return n;
+  //set the tree to the tail and return it.
+  tr->tail = n;
+  return tr;
 }
 
 /* Creates a new node in the depth first search
  */
-node * newNode(int r, int c, node * parent){
-  if(!parent) return NULL;
+int newNode(int r, int c, tree * tr){
+  if(!tree) return NULL;
   if(r <= 0 || r <= 0) return NULL;
+  // allocate the new node.
+  node * n;
   n = malloc(sizeof(node));
+  if(!n) return NULL; // bad allocation
   n->row = r;
   n->col = c;
-  n->parent = parent;
-  return n;
+  //it's parent is the last in the 
+  n->parent = tr->tail;
+  tr->tail = n;
+  return 1;
+}
+
+/* A function that deletes the node at the end of the
+ * tree/LIFO and moves the tail up.
+ */
+int deleteNode(tree * tr){
+  if(!tr) return NULL;
+  if(!tr->tail) return NULL; // in case it tries to free something bad...
+  // a node to reference the tail.
+  node * n;
+  n = tr->tail;
+  // tree goes up one in the list
+  tr = n->parent;
+  // free the node
+  free(n);
+  return 1;
 }
 
 /* Takes the end of the depth first search.
  * Removes each node from the end and getting 
  * each parent.
  */
-int freeTree(node * endNode){
-  if(!n) return NULL;
+int freeTree(tree * tr){
+  if(!tr) return NULL;
   node * n;
   node * nprev;
-  nprev = endNode->parent;
+  n = tr->tail;
+  nprev = n;
   while(n){
-    free(n);
-    n = nprev;
-    nprev = nprev->parent;
+    // go up the tree deleting nodes
+    n = n->parent;
+    free(nprev);
+    nprev = n;
   }
+  // free the tree now that the nodes are free.
+  free(tr);
   return 1;
 }
 
