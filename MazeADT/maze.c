@@ -23,6 +23,13 @@ struct _node {
   node * child;
   node * parent;
 };
+
+/* tree LIFO used to solve the maze.
+ * doesn't have a head since it only needs the last node.
+ */
+struct _tree {
+  node * tail;
+};
   
 // same functions from matrix getE and setE (get element & set element)
 int getE(maze const * mz, int row, int col) {
@@ -205,12 +212,12 @@ tree * plantTree(maze * mz){ //plant a tree... make a forest
 /* Creates a new node in the depth first search
  */
 int newNode(int r, int c, tree * tr, maze * mz){
-  if(!tree) return NULL;
-  if(r <= 0 || r <= 0) return NULL;
+  if(!tr) return 0;
+  if(r <= 0 || r <= 0) return 0;
   // allocate the new node.
   node * n;
   n = malloc(sizeof(node));
-  if(!n) return NULL; // bad allocation
+  if(!n) return 0; // bad allocation
   n->row = r;
   n->col = c;
   //it's parent is the last in the 
@@ -224,14 +231,14 @@ int newNode(int r, int c, tree * tr, maze * mz){
  * tree/LIFO and moves the tail up.
  */
 int deleteNode(tree * tr, maze * mz){
-  if(!tr) return NULL;
-  if(!tr->tail) return NULL; // in case it tries to free something bad...
+  if(!tr) return 0;
+  if(!tr->tail) return 0; // in case it tries to free something bad...
   // a node to reference the tail.
   node * n;
   n = tr->tail;
   setE(mz, n->row, n->col, -1); //no longer in the
   // tree goes up one in the list
-  tr = n->parent;
+  tr->tail = n->parent;
   // free the node
   free(n);
   return 1;
@@ -242,7 +249,7 @@ int deleteNode(tree * tr, maze * mz){
  * each parent.
  */
 int freeTree(tree * tr){
-  if(!tr) return NULL;
+  if(!tr) return 0;
   node * n;
   node * nprev;
   n = tr->tail;
@@ -302,5 +309,13 @@ int stepPath(tree * tr,maze * mz){
   return 0;
 }
     
-    
+int findSol(tree * tr, maze * mz){
+  if(!tr || !mz) return 0;
+  int n = 0;
+  while(!(n = stepPath(tr, mz)));
+  // keep stepping the path until there is or isn't a solution
+  if(n == 1) return 1; // found a solution
+  if(n == -1) return 0; // no solution
+  return 0; // unexpected return value...
+}
     

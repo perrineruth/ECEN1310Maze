@@ -39,7 +39,11 @@ tree * plantTree(maze * mz);
  * works as a linked list (LIFO)
  */
 
-int newNode(maze * mz, int r, int c, node * parent);
+int freeTree(tree * tr);
+/* frees the nodes in tree as well as the tree itself.
+ */
+
+int newNode(int r, int c, tree * tr, maze * mz);
 /* makes a new node and adds it to the tree.
  * then sets the new node to -2 in the corresponding
  * location in the maze to say it's in the explored path.
@@ -63,7 +67,7 @@ int findSol(tree * tr, maze * mz);
 /* A function that continues by stepping through
  * the maze until a solution is found, or until
  * it realizes there is no solution.
- * returns 0 if there is no solution
+ * returns 0 if there is no solution or has bad input
  * or 1 if it found a solution.
  * sets up the maze data to be printed as well.
  */

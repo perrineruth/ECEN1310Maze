@@ -12,8 +12,12 @@ int main(){
     printf("Malformed input\n"); // shouldn't get this but here anyways
   fp = fopen(str, "r"); // read designated fileprint
   maze * m = newMaze(fp); // make the maze
+  tree * tr;
+  tr = plantTree(m);
+  stepPath(tr,m); // try updating maze
   fclose(fp);
   printMaze(m); assert(m);
   deleteMaze(m);
+  freeTree(tr);
   return 0;
 }
