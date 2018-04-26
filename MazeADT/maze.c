@@ -19,18 +19,10 @@ struct _maze {
  */
 struct _node {
   int row, col;
-  node * north; node * east;
-  node * west;  node * south;
+  node * child;
   node * parent;
 };
-
-/* Works as the linked list for the tree search.
- * Doesn't have a head since it works as a LIFO.
- */
-struct _tree {
-  node * tail;
-}
-
+  
 // same functions from matrix getE and setE
 int getE(maze const * mz, int row, int col) {
   return mz->data[(col-1) * mz->rows + row - 1];
@@ -227,3 +219,22 @@ int freeTree(node * endNode){
   }
   return 1;
 }
+
+int stepPath(tree * tr,maze * mz, ){
+  node * n;
+  n=tr->tail;
+  setE(mz,n->row,n->col,-2);
+  bool opath;
+  if (!getE(mz,n->row,n->col+1)){ //Right
+    
+  }
+  else if(!getE(mz,n->row+1,n->col)){//Down
+
+  }
+  else if(!getE(mz,n->row,n->col-1)){//Left
+
+  }
+  else if(!getE(mz,n->-1,n->col)){//Up
+
+  }
+  if(!opath) //backtrack if no open paths found
