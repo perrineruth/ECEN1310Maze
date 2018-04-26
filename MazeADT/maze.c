@@ -24,7 +24,7 @@ struct _node {
   node * parent;
 };
   
-// same functions from matrix getE and setE
+// same functions from matrix getE and setE (get element & set element)
 int getE(maze const * mz, int row, int col) {
   return mz->data[(col-1) * mz->rows + row - 1];
 }

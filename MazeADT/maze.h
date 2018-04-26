@@ -2,9 +2,11 @@
 #define MAZE_H_
 
 // file types for maze.c
-// maze which is a matrix of the maze itself
+// maze which is a matrix of the maze itself.
 typedef struct _maze maze;
+// node in the tree linked list.
 typedef struct _node node;
+// linked list attempting a path to solve the maze.
 typedef struct _tree tree;
 
 maze * newMaze(FILE * mz);
@@ -13,16 +15,24 @@ maze * newMaze(FILE * mz);
  * space and 1 everywhere else takes a
  * start at character 's' and ends at 
  * the character 'e'
+ * code for each maze value:
+ * 0  = space that is still traversable
+ * 1  = wall
+ * -1 = already explored but not in current path
+ * -2 = in current path
  */
 
 void deleteMaze(maze * mz);
 // frees the memory stored by maze
 
 int printMaze(maze const * mz);
-/* prints the maze in boolean form
+/* prints the maze in integer form
  * as well as the coordinates of the
  * start and end points
  */
+
+int * printSol(); // function not yet implemented
+// like print maze but nicer form.
 
 tree * plantTree(maze * mz);
 /* Makes a tree for the maze solver
@@ -40,5 +50,21 @@ int deleteNode(tree * tr, maze * mz);
  * and sets it to -1 in the corresponding maze
  * element (explored but not in current path)
  * and then deletes the node and backtracks.
+ */
+
+int stepPath(tree * tr, maze * mz);
+/* Checks the last node of the tree FIFO and adds
+ * an element or goes back to thhe parent if possible.
+ * returns 0 if it did this, 1 if it found a solution,
+ * and -1 if it explored all possible locations.
+ */
+
+int findSol(tree * tr, maze * mz);
+/* A function that continues by stepping through
+ * the maze until a solution is found, or until
+ * it realizes there is no solution.
+ * returns 0 if there is no solution
+ * or 1 if it found a solution.
+ * sets up the maze data to be printed as well.
  */
 #endif
