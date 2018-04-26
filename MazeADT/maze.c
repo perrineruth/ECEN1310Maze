@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "maze.h"
 
@@ -189,7 +190,7 @@ int printMaze(maze const * mz) {
 
 // tree functions
 
-tree * newTree(maze * mz){
+tree * plantTree(maze * mz){ //plant a tree... make a forest
   // check for null pointers and allocate data.
   if(!mz) return NULL;
   tree * tr;
@@ -211,7 +212,7 @@ tree * newTree(maze * mz){
 
 /* Creates a new node in the depth first search
  */
-int newNode(int r, int c, tree * tr){
+int newNode(int r, int c, tree * tr, maze * mz){
   if(!tree) return NULL;
   if(r <= 0 || r <= 0) return NULL;
   // allocate the new node.
@@ -223,18 +224,20 @@ int newNode(int r, int c, tree * tr){
   //it's parent is the last in the 
   n->parent = tr->tail;
   tr->tail = n;
+  setE(mz, r, c, -2); //sets the new element as the current path in the maze as well.
   return 1;
 }
 
 /* A function that deletes the node at the end of the
  * tree/LIFO and moves the tail up.
  */
-int deleteNode(tree * tr){
+int deleteNode(tree * tr, maze * mz){
   if(!tr) return NULL;
   if(!tr->tail) return NULL; // in case it tries to free something bad...
   // a node to reference the tail.
   node * n;
   n = tr->tail;
+  setE(mz, n->row, n->col, -1); //no longer in the
   // tree goes up one in the list
   tr = n->parent;
   // free the node
