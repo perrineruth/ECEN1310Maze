@@ -173,7 +173,7 @@ int printMaze(maze const * mz) {
        * a wall and 0 otherwise.
        * surrounds each number by 2
        * spaces.                        */
-      printf(" %d ", getE(mz, row, col));
+      printf(" %2d ", getE(mz, row, col));
     }
     /* separate rows by newlines */
     printf("\n");

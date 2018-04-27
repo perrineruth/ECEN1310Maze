@@ -14,7 +14,7 @@ int main(){
   maze * m = newMaze(fp); // make the maze
   tree * tr;
   tr = plantTree(m);
-  stepPath(tr,m); // try updating maze
+  findSol(tr,m); // try updating maze
   fclose(fp);
   printMaze(m); assert(m);
   deleteMaze(m);
