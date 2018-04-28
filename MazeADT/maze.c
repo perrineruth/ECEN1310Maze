@@ -184,6 +184,40 @@ int printMaze(maze const * mz) {
   return 0;
 }
 
+int printPrettyMaze(maze const * mz) {
+  int row, col;
+  int val;
+  if (!mz) return -1;
+
+  for (row = 1; row <= mz->rows; row++) {
+    for (col = 1; col <= mz->cols; col++) {
+      /* Print the wall as 1 if there's
+       * a wall and 0 otherwise.
+       * surrounds each number by 2
+       * spaces.                        */
+      val=getE(mz,row,col);
+      if (val==0)
+	printf("%2c",' ');
+      if(val==1)
+	printf("%2c",'@');
+      if(val==-2)
+	printf("%2c",'*');
+      if(val==2)
+	printf("%2c",'S');
+      if(val==3)
+	printf("%2c",'F');
+      if(val==-1)
+	printf("%2c",' ');
+    }
+    /* separate rows by newlines */
+    printf("\n");
+  }
+  // say where it starts and ends.
+  printf("starts at row: %d col: %d\n",mz->start[0],mz->start[1]);
+  printf("ends at row: %d col: %d\n",mz->end[0],mz->end[1]);
+  return 0;
+}
+
 
 
 

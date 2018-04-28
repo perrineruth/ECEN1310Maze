@@ -30,6 +30,8 @@ int printMaze(maze const * mz);
  * as well as the coordinates of the
  * start and end points
  */
+int printPrettyMaze(maze const * mz);
+//Calls printMaze in a more User-friendly view.
 
 int * printSol(); // function not yet implemented
 // like print maze but nicer form.

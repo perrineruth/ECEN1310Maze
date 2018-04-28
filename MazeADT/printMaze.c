@@ -17,6 +17,7 @@ int main(){
   findSol(tr,m); // try updating maze
   fclose(fp);
   printMaze(m); assert(m);
+  printPrettyMaze(m); assert(m);
   deleteMaze(m);
   freeTree(tr);
   return 0;
