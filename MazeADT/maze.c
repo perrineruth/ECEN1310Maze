@@ -147,7 +147,7 @@ maze * newMaze(FILE * fp) {
      || !mz->end[0] || !mz->end[1]){
     // if this failed.
     free(mz->data); free(mz);
-    printf("Must have exactly one start and one edge\n");
+    printf("Must have exactly one start and one end\n");
     return 0;
   }
   return mz;
