@@ -1,0 +1,39 @@
+
+solveMaze.c,15
+int main(7,79
+
+maze.c,641
+struct _maze 11,225
+  int rows,12,240
+  int rows, cols;12,240
+  int * data;13,258
+  int start[start14,272
+  int start[2], end[end14,272
+struct _node 21,486
+  int row,22,501
+  int row, col;22,501
+  node * child;23,517
+  node * parent;24,533
+struct _tree 30,653
+  node * tail;31,668
+int getE(35,761
+void setE(39,859
+int badArgs(44,996
+int mazeSize(58,1394
+int setVals(82,2062
+maze * newMaze(121,2961
+void deleteMaze(156,3805
+int printMaze(165,3939
+int printPrettyMaze(187,4535
+tree * plantTree(226,5379
+int newNode(248,5944
+int deleteNode(267,6450
+int freeTree(285,6907
+int stepPath(307,7286
+int findSol(346,8071
+
+maze.h,121
+#define MAZE_H_2,16
+typedef struct _maze maze;6,104
+typedef struct _node node;8,164
+typedef struct _tree tree;10,243
