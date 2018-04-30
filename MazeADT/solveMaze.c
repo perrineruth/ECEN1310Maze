@@ -28,14 +28,14 @@ int main(){
     return -1;}
   if(!findSol(tr,m)){
     // try updating maze. If findSol==0, no solution was found.
-    assert(printPrettyMaze(m)); 
+    assert(!printPrettyMaze(m)); 
     printf("No solution found\n");
     return 0;
   }
   freeTree(tr);
-  //printMaze(m); assert(m);           //Prints the maze using maze matrix stored values.
-  if(!printPrettyMaze(m)){             //Prints a User-friendly version of the maze.
+  //printMaze(m); assert(m);           // Prints the maze using maze matrix stored values.
+  if(printPrettyMaze(m)){              // Prints a User-friendly version of the maze.
     deleteMaze(m);
-    assert(0);}                        // already found an error just needs to free m first
+    assert(0);}                        // Already found an error just needs to free m first
   return 0;
 }
