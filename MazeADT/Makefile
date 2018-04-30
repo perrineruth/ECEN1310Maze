@@ -1,7 +1,7 @@
 # Variables
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -pedantic -g
-PROG = printMaze
+PROG = solveMaze
 SRC = $(PROG).c maze.c
 HDR = maze.h
 OBJ = $(SRC:.c=.o)
