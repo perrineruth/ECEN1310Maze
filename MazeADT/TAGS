@@ -22,15 +22,15 @@ int badArgs(44,996
 int mazeSize(58,1394
 int setVals(82,2062
 maze * newMaze(121,2961
-void deleteMaze(156,3805
-int printMaze(165,3939
-int printPrettyMaze(187,4535
-tree * plantTree(226,5379
-int newNode(248,5944
-int deleteNode(267,6450
-int freeTree(285,6907
-int stepPath(307,7286
-int findSol(346,8071
+void deleteMaze(156,3804
+int printMaze(165,3938
+int printPrettyMaze(187,4534
+tree * plantTree(226,5378
+int newNode(248,5943
+int deleteNode(267,6449
+int freeTree(285,6906
+int stepPath(307,7285
+int findSol(346,8070
 
 maze.h,121
 #define MAZE_H_2,16
